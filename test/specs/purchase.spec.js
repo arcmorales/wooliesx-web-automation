@@ -105,10 +105,10 @@ describe('Add 2 items to the cart and place an order', () => {
 
   it('should be able to choose a payment methods and complete checkout', () => {
     paymentScreen.bankWireOption.click()
+    paymentScreen.confirmOrderButton.waitForDisplayed(TIMINGS.PAGE_LOAD)
     paymentScreen.confirmOrderButton.click()
     paymentScreen.bankWireOrderSummary.waitForDisplayed(TIMINGS.TRANSITION)
-    paymentScreen.confirmOrderButton.click()
-    expect(paymentScreen.orderConfirmationHeader.getTex()).to.equal('Order confirmation')
+    expect(paymentScreen.orderConfirmationHeader.getText()).to.equal('ORDER CONFIRMATION')
     expect(paymentScreen.orderConfirmation.getText()).to.equal('Your order on My Store is complete.')
     expect(paymentScreen.bankWireOrderSummary.isDisplayed()).to.equal(true)
   })

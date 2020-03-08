@@ -134,7 +134,7 @@ export class PaymentScreen {
   }
 
   get bankWireOrderSummary () {
-    return $('form .cheque-indent')
+    return $('.box .cheque-indent')
   }
 
   get orderConfirmation () {

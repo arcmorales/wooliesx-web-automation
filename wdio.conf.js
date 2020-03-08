@@ -1,4 +1,5 @@
 'use strict'
+const fs = require('fs')
 exports.config = {
   //
   // ====================
@@ -79,5 +80,16 @@ exports.config = {
     const chai = require('chai')
     global.expect = chai.expect
     chai.Should()
+    if (!fs.existsSync('errorShots')) {
+      fs.mkdirSync('errorShots')
+    }
+    driver.setImplicitTimeout(2000)
+  },
+  afterTest: (test) => {
+    let timestamp = Date.now()
+    if (!test.passed) {
+      const fileName = `${test.title}`.replace(/ /g, '_')
+      driver.saveScreenshot(`errorShots/${fileName}-${timestamp}.png`)
+    }
   }
 }
